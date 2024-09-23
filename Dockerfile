@@ -1,12 +1,24 @@
-# syntax=docker/dockerfile:1
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3-alpine3.15
 
-FROM python:3.8-slim-buster
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR /python-docker
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+WORKDIR /app
+COPY . /app
 
-COPY . .
+# Install pip requirements
+RUN pip install -r requirements.txt --no-cache-dir
 
-CMD [ "python3", "-m" , "flask", "run"]
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+# RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+# USER appuser
+EXPOSE 5000
+
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+
+CMD python ./app.py
