@@ -1,15 +1,22 @@
-import docker.errors
-from flask import Flask, render_template
-import docker 
-
+from flask import Flask, render_template, jsonify
+import docker
+# client = None
 app = Flask(__name__)
 
-client = None
-
-@app.route("/")
-def index():
+@app.route('/')
+def hello_world():
     client = docker.from_env()
-    return render_template('index.html')
+    p = client.ping()
+    imgs = get_images(client)
+    return render_template('index.html', ping = p, images = imgs)
+    # return jsonify({"ping": p, })
+
+def get_images(client):
+    try:
+        res = client.images.list()
+        return res
+    except docker.errors.APIError as a:
+        print("Error: ",a)
 
 """
 Make an engine join a docker swarm that has already been created.

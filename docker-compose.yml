@@ -1,10 +1,7 @@
-version: '3.4'
-
 services:
-  dockerswarmdashb:
-    image: dockerswarmdashb
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  web:
+    build: .
     ports:
-      - 5000:5000
+      - "5000:5000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
