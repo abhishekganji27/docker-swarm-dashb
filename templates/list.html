@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block showlist %}
+    {% if res_list %}
+        <ul>
+            {% for item in res_list %}
+                <li>id: {{item.id}} </li>
+            {% endfor %}
+            <p> done </p>
+        </ul>
+    {% else %}
+        <p> None </p>
+    {% endif %}
+
+{% endblock %}

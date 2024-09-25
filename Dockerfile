@@ -18,4 +18,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["flask", "run", "--debug"]
+CMD ["flask", "run"]

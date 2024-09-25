@@ -2,16 +2,7 @@
         <body>
                 <h1>Docker DashBoard</h1>
                 <p>ping -> {{ping}}</p>
-                <hr> <br>
-                {% if images %}
-                <ul>
-                        {% for img in images %}
-                                <li>id: {{img.id}} </li>
-                        {% endfor %}
-                        <p> done </p>
-                </ul>
-                {% else %}
-                <p> No images </p>
-                {% endif %}
+                {% block showlist %}
+                {% endblock %}
         </body>
 </html>
