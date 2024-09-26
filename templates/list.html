@@ -1,14 +1,28 @@
 {% extends 'index.html' %}
 {% block showlist %}
     {% if res_list %}
-        <ul>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Short ID</th>
+              <!-- <th scope="col">Name</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% set cnt = 1 %}
             {% for item in res_list %}
-                <li>id: {{item.id}} </li>
+                <tr>
+                    <th scope="row">{{ cnt }}</th>
+                    <li>{{ item.short_id }}</li>
+                    <!-- <li>{{ item.name }}</li> -->
+                </tr>
+                {% set cnt += 1 %}
             {% endfor %}
-            <p> done </p>
-        </ul>
+        </tbody>
+    </table>
     {% else %}
-        <p> None </p>
+        <p> Nothing to show here. </p>
     {% endif %}
 
 {% endblock %}
