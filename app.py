@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify
 import docker
+import docker.errors as de
 
 # client = None
 app = Flask(__name__)
@@ -18,14 +19,17 @@ def hello_world():
 # Swarm Nodes API
 @app.route("/nodes")
 def list_swarm_nodes():
-    client = get_client()
-    nlist = client.nodes.list()
-    return render_template('list.html', res_list = nlist)
+    try:
+        client = get_client()
+        nlist = client.nodes.list()
+        return render_template('list.html', res_list = nlist)
 
+    except de.APIError as a:
+        print("Error: ", a)
 
 # Images 
 def get_images(client):
-    try: 
+    try:
         res = client.images.list()
         return res
     except docker.errors.APIError as a:
