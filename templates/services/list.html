@@ -5,16 +5,17 @@
         <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">attrs ID</th>
-                <th scope="col"> attrs </th>
+              <th scope="col">ID</th>
+                <th scope="col">attrs ID</th>
             </tr>
         </thead>
         <tbody>
             {% for item in res_list %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.attrs }}</td>
                     <td>{{ item.attrs.ID }}</td>
-                        <td>{{ item.attrs }}</td>
+
                 </tr>
             {% endfor %}
         </tbody>
