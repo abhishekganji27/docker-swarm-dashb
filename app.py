@@ -21,7 +21,7 @@ def list_swarm_services():
         client = get_client()
         slist = client.services.list()
         return render_template("services/list.html", res_list = slist)
-    except de.APIError as a:
+    except de.APIError as e:
         flash("Error!")
         return render_template("404.html", error=e)
 
@@ -33,6 +33,6 @@ def list_swarm_nodes():
         nlist = client.nodes.list()
         return render_template("list.html", res_list = nlist)
 
-    except de.APIError as a:
+    except de.APIError as e:
         flash("Error!")
         return render_template("404.html", error=e)
