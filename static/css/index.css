@@ -1,0 +1,9 @@
+.main-container {
+    margin: 20px auto;
+    width: 70%;
+}
+
+.card-options {
+    display: flex;
+    justify-content: space-evenly;
+}

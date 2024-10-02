@@ -9,7 +9,7 @@ def get_client():
     return docker.from_env()
 
 @app.route('/')
-def hello_world():
+def home():
     client = get_client()
     p = client.ping()
     return render_template('index.html', ping = p)
@@ -31,7 +31,7 @@ def list_swarm_nodes():
     try:
         client = get_client()
         nlist = client.nodes.list()
-        return render_template("list.html", res_list = nlist)
+        return render_template("nodes/list.html", res_list = nlist)
 
     except de.APIError as e:
         flash("Error!")
