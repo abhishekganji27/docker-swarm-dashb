@@ -25,7 +25,7 @@ def list_swarm_services():
         flash("Error!")
         return render_template("404.html", error=e)
 
-@app.route("/services/<string:id>/inspect")
+@app.route("/services/inspect/<id>")
 def inspect_swarm_service(id):
     try:
         client = get_client()
