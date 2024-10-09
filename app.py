@@ -25,6 +25,20 @@ def list_swarm_services():
         flash("Error!")
         return render_template("404.html", error=e)
 
+@app.route("/services/<string:id>/inspect")
+def inspect_swarm_service(id):
+    try:
+        client = get_client()
+        service = client.services.get(id)
+        return render_template("services/inspect.html", service=service)
+    
+    except de.NotFound as nf:
+        return render_template("404.html", error = nf)
+    except de.APIError as ae:
+        return render_template("404.html", error = ae)
+    except de.InvalidVersion as iv:
+        return render_template("404.html", error = iv)
+
 # Swarm Nodes API
 @app.route("/nodes")
 def list_swarm_nodes():

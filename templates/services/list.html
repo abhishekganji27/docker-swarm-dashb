@@ -12,7 +12,7 @@
                                 <h5 class="card-title">{{ item.attrs.Spec.Name }}</h5>
                                 <p class="card-text">id: {{ item.attrs.ID }}</p>
                                 <div class="card-options">
-                                        <a href="#" class="btn btn-outline-primary">Inspect</a>
+                                        <a href="{{ url_for( 'inspect_swarm_service', id=item.attrs.ID )}}" class="btn btn-outline-primary">Inspect</a>
                                         <a href="#" class="btn btn-outline-primary">Update</a>
                                         <a href="#" class="btn btn-outline-primary">Delete</a>
                                 </div>

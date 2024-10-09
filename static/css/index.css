@@ -3,6 +3,11 @@
     width: 70%;
 }
 
+.inspect-box {
+    background-color: rgb(235, 240, 240);
+    padding: 30px;
+}
+
 .card-options {
     display: flex;
     justify-content: space-evenly;
